@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-group">
+        <label for="">Mã khách hàng</label>
+        <input
+          type="text"
+          class="form-control"
+          name=""
+          id="makhachhang"
+          aria-describedby="helpId"
+          placeholder=""
+        />
+      </div>
+      <div class="form-group">
+        <label for="">loại khách hàng</label>
+        <input
+          type="text"
+          class="form-control"
+          name=""
+          id="loaikhachhang"
+          aria-describedby="helpId"
+          placeholder=""
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="">số kênh cao cấp</label>
+        <input
+          type="text"
+          class="form-control"
+          name=""
+          id="sokenhcaocap"
+          aria-describedby="helpId"
+          placeholder=""
+        />
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input
+            type="radio"
+            class="form-check-input"
+            name="user"
+            id="doanhnghiep"
+            value="doanhnghiep"
+            checked
+          />
+          doanh nghiệp
+        </label>
+        <label class="form-check-label ml-5">
+          <input
+            type="radio"
+            class="form-check-input"
+            name="user"
+            id="nhadan"
+            value="nhadan"
+          />
+          nhà dân
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="">số kết nối</label>
+        <input
+          type="text"
+          class="form-control"
+          name=""
+          id="soketnoi"
+          aria-describedby="helpId"
+          placeholder=""
+        />
+      </div>
+      <button id="btn" type="button" class="btn btn-primary">Primary</button>
+      <h2 id="show"></h2>
+    </div>
+
+    <script>
+      const btn = document.querySelector("#btn");
+      const radioButtons = document.querySelectorAll('input[name="user"]');
+
+      for (const radioButton of radioButtons) {
+        radioButton.addEventListener("change", showSelected);
+      }
+
+      function showSelected(e) {
+        console.log(this.value);
+        if (this.checked == true && this.value == "nhadan") {
+          $("#soketnoi").prop("disabled", true); // if disabled, enable
+        } else {
+          $("#soketnoi").prop("disabled", false); // if enabled, disable
+        }
+      }
+
+      btn.addEventListener("click", () => {
+        var makhachhang = document.getElementById("makhachhang").value * 1;
+        var loaikhachhang = document.getElementById("loaikhachhang").value * 1;
+        var sokenhcaocap = document.getElementById("sokenhcaocap").value * 1;
+        var tien = 0;
+        if (document.getElementById("doanhnghiep").checked) {
+          var soketnoi = document.getElementById("soketnoi").value * 1;
+          if (soketnoi > 10) {
+            tien = tien + 10 * 75 + (soketnoi - 10) * 80;
+          } else {
+            tien = tien + soketnoi * 75;
+          }
+          tien = tien + 15 + sokenhcaocap * 50;
+          document.getElementById("show").textContent =
+            "số tiền cần phải trả" + tien;
+        } else {
+          tien = tien + 4.5 + 20.5 + sokenhcaocap * 7.5;
+          document.getElementById("show").textContent =
+            "số tiền cần phải trả" + tien;
+        }
+      });
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
